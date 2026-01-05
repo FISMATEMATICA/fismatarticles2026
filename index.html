@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Publications 2026</title>
+  <style>
+    body { font-family: "Segoe UI", Arial, sans-serif; margin:0; background:#f7f9fc; color:#333; }
+    header { background:#004d4d; padding:2em; text-align:center; }
+    header h1 { color:#fff; font-size:2rem; margin:0; }
+    #results { max-width:900px; margin:2em auto; padding:0 1em; }
+    .paper { margin-bottom:1.25em; padding:1.1em; background:#fff; border-left:6px solid #004d4d;
+             border-radius:8px; box-shadow:0 4px 10px rgba(0,0,0,0.05); transition:transform .18s ease; }
+    .paper:hover{ transform:translateY(-2px); }
+    .title a{ font-size:1.05rem; font-weight:700; color:#004d4d; text-decoration:none; }
+    .meta{ margin-top:.45em; color:#555; font-size:.95em; }
+    .muted{ color:#888; font-size:.95em; }
+    .loading{ text-align:center; padding:2em 0; color:#666; }
+  </style>
+</head>
+<body>
+  <header><h1>Publications 2026</h1></header>
+  <div id="results" class="loading">Carregando artigos...</div>
+
+  <script>
+    // URL do seu Worker (já publicado)
+    const WORKER_BASE = "https://spring-glade-d911.fismat.workers.dev/";
+
+    // Lista de autores destacados (padronize/adicione se quiser)
+    const nomesDestacados = [
+      "Gustavo Burdman","Renata Zukanovich Funchal","Oscar Eboli","O. J. P. Eboli",
+      "Gustavo F. S. Alves","Matheus Martines","Luighi P. S. Leal","L.P. Santos Leal",
+      "L. P. Santos Leal","L. P. S. Leal","Peter Reimitz","Ana Luisa Foguel",
+      "Gabriel M. Salla","Oscar J. P. Éboli","Lucas Magno D. Ramos",
+      "Gustavo S.S. Sakoda","G.S.S. Sakoda","Disha Bhatia","Sujay Shil",
+      "Rafiqul Rahaman","Barbara Amaral","Eduardo Casali","Frederique Grassi",
+      "J.C.A. Barata","João C. A. Barata","Joao C. A. Barata","L.R.W.Abramo",
+      "L. Raul Abramo","R. Abramo","Raul Abramo","Natália V.N. Rodrigues",
+      "Marcos Lima","Matthew Luzum","Luis Raul Abramo","João Vitor Dinarte Ferri",
+      "Igor Neiva Mesquita","Álvaro S. de Jesus","Á.S. de Jesus","Naim Elias Comar",
+      "Alisson Tezzin","Ian Tashiro","Kevin Pala","Pedro Ishida",
+      "L. R. Abramo","O. J. P. Éboli","Bárbara Amaral","R. Zukanovich Funchal",
+      "Pedro Bittar","Gabriel Santos Menezes","Ricardo Correa da Silva","R Correa da Silva",
+      "RC da Silva","Lua F. T. Airoldi","Victor Hugo M. Ramos","Victor Hugo Marques Ramos",
+      "Henrique Ay Casa Grande", "Cleverson Andrade Goulart", "Mauricio Porto Pato"
+    ];
+
+    const resultsDiv = document.getElementById("results");
+
+    function deveDestacarAutor(nome) {
+      return nomesDestacados.some(n => n.toLowerCase().trim() === nome.toLowerCase().trim());
+    }
+
+    // Transforma XML (entry nodes) em objeto JS
+    function parseEntry(node) {
+      const getText = (tag) => {
+        const el = node.getElementsByTagName(tag)[0];
+        return el ? el.textContent.trim() : "";
+      };
+
+      const id = getText("id");
+      const title = getText("title");
+      const published = getText("published");
+      const journal_ref_node = node.getElementsByTagName("journal_ref")[0];
+      const journal = journal_ref_node ? journal_ref_node.textContent.trim() : "";
+
+      const authorNodes = node.getElementsByTagName("author");
+      const authors = [];
+      for (let a of authorNodes) {
+        const nameNode = a.getElementsByTagName("name")[0];
+        if (nameNode) authors.push(nameNode.textContent.trim());
+      }
+
+      return { id, title, published, authors, journal };
+    }
+
+    // Remove entradas duplicadas por id
+    function dedupe(entries) {
+      const seen = new Set();
+      const out = [];
+      for (const e of entries) {
+        if (!e.id) continue;
+        if (!seen.has(e.id)) { seen.add(e.id); out.push(e); }
+      }
+      return out;
+    }
+
+    async function carregarResultados() {
+      resultsDiv.className = "loading";
+      resultsDiv.textContent = "Carregando artigos...";
+
+      try {
+        // monta a query do arXiv usando a lista de autores
+        const autoresQuery = nomesDestacados
+          .map(nome => `au:"${nome.replace(/"/g, "").replace(/\s+/g, "+")}"`)
+          .join("+OR+");
+
+        const arxivURL = `https://export.arxiv.org/api/query?search_query=${autoresQuery}&sortBy=submittedDate&sortOrder=descending&max_results=300`;
+
+        // chama seu Worker com ?url=ARXIV
+        const proxyURL = WORKER_BASE + "?url=" + encodeURIComponent(arxivURL);
+
+        const resp = await fetch(proxyURL, { method: "GET" });
+        if (!resp.ok) throw new Error("Resposta do Worker: " + resp.status + " " + resp.statusText);
+
+        const xmlText = await resp.text();
+
+        // parse XML
+        const xml = new DOMParser().parseFromString(xmlText, "application/xml");
+        const entriesNodes = Array.from(xml.getElementsByTagName("entry"));
+
+        // converte para objetos JS
+        let entries = entriesNodes.map(parseEntry);
+
+        // filtra só 2026
+        entries = entries.filter(e => e.published && e.published.startsWith("2026"));
+
+        // dedupe por id
+        entries = dedupe(entries);
+
+        // adiciona campo Date (objeto) para ordenar
+        entries = entries.map(e => ({ ...e, _date: e.published ? new Date(e.published) : new Date(0) }));
+
+        // ordena do mais recente para o mais antigo
+        entries.sort((a, b) => b._date - a._date);
+
+        // filtra para incluir apenas se houver ao menos um autor destacado
+        entries = entries.filter(e => e.authors.some(a => deveDestacarAutor(a)));
+
+        if (!entries.length) {
+          resultsDiv.className = "";
+          resultsDiv.innerHTML = '<div class="muted">Nenhum artigo de 2026 encontrado para os autores destacados.</div>';
+          return;
+        }
+
+        // monta HTML
+        const html = entries.map(e => {
+          const authorsHTML = e.authors
+            .map(a => deveDestacarAutor(a) ? `<strong>${a}</strong>` : a)
+            .join(", ");
+
+          return `
+            <div class="paper">
+              <div class="title"><a href="${e.id}" target="_blank" rel="noopener noreferrer">${escapeHtml(e.title)}</a></div>
+              <div class="meta">Autores: ${authorsHTML}</div>
+              <div class="meta">Publicado em: ${e.published}</div>
+              ${e.journal ? `<div class="meta">${escapeHtml(e.journal)}</div>` : ""}
+            </div>
+          `;
+        }).join("");
+
+        resultsDiv.className = "";
+        resultsDiv.innerHTML = html;
+
+      } catch (error) {
+        console.error(error);
+        resultsDiv.className = "";
+        resultsDiv.innerHTML = `<div class="muted">Erro ao carregar os dados: ${escapeHtml(error.message)}</div>`;
+      }
+    }
+
+    // pequena função para escapar HTML em títulos/journals
+    function escapeHtml(text) {
+      if (!text) return "";
+      return text.replace(/&/g, "&amp;")
+                 .replace(/</g, "&lt;")
+                 .replace(/>/g, "&gt;")
+                 .replace(/"/g, "&quot;")
+                 .replace(/'/g, "&#039;");
+    }
+
+    // inicia a carga
+    carregarResultados();
+  </script>
+</body>
+</html>
+
