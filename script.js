@@ -2,21 +2,34 @@
 const WORKER_URL = "https://spring-glade-d911.fismat.workers.dev";
 
 const nomesDestacados = [
-  "Gustavo Burdman", "Renata Zukanovich Funchal", "Oscar Eboli", "O. J. P. Eboli",
-  "Gustavo F. S. Alves", "Matheus Martines", "Luighi P. S. Leal", "L.P. Santos Leal",
-  "L. P. Santos Leal", "L. P. S. Leal", "Peter Reimitz", "Ana Luisa Foguel",
-  "Gabriel M. Salla", "Oscar J. P. Éboli", "Lucas Magno D. Ramos",
-  "Gustavo S.S. Sakoda", "G.S.S. Sakoda", "Disha Bhatia", "Sujay Shil",
-  "Rafiqul Rahaman", "Barbara Amaral", "Eduardo Casali",
-  "Frederique Grassi", "J.C.A. Barata", "João C. A. Barata", "Joao C. A. Barata",
-  "L.R.W.Abramo", "L. Raul Abramo", "R. Abramo", "Raul Abramo", "Natália V.N. Rodrigues",
-  "Marcos Lima", "Matthew Luzum", "Luis Raul Abramo", "João Vitor Dinarte Ferri",
-  "Igor Neiva Mesquita", "Álvaro S. de Jesus", "Á.S. de Jesus", "Naim Elias Comar",
-  "Alisson Tezzin", "Ian Tashiro", "Kevin Pala", "Pedro Ishida",
-  "L. R. Abramo", "O. J. P. Éboli", "Bárbara Amaral",
-  "R. Zukanovich Funchal", "Pedro Bittar", "Gabriel Santos Menezes", "Ricardo Correa da Silva",
-  "R Correa da Silva", "RC da Silva", "Lua F. T. Airoldi", "Victor Hugo M. Ramos",
-  "Victor Hugo Marques Ramos", "Henrique Ay Casa Grande", "Cleverson Andrade Goulart", "Mauricio Porto Pato"
+ "Gustavo Burdman","Renata Zukanovich Funchal","Oscar Eboli","O. J. P. Eboli",
+      "Matheus Martines","Luighi P. S. Leal","L.P. Santos Leal",
+      "L. P. Santos Leal","L. P. S. Leal","Ana Luisa Foguel",
+     "Oscar J. P. Éboli","Lucas Magno D. Ramos","Bruno Hiroki Muto",
+      "Gustavo S.S. Sakoda","G.S.S. Sakoda", "Bruno Siqueira Eduardo",
+      "Rafiqul Rahaman","Barbara Amaral","Eduardo Casali","Frederique Grassi",
+      "J.C.A. Barata","João C. A. Barata","Joao C. A. Barata","L.R.W.Abramo",
+      "L. Raul Abramo","R. Abramo","Raul Abramo",
+      "Marcos Lima","Matthew Luzum","Luis Raul Abramo","João Vitor Dinarte Ferri",
+      "Álvaro S. de Jesus","Á.S. de Jesus",
+      "Alisson Tezzin","Ian Tashiro","Kevin Pala","Pedro Ishida",
+      "L. R. Abramo","O. J. P. Éboli","Bárbara Amaral","R. Zukanovich Funchal",
+      "Gabriel Santos Menezes","Ricardo Correa da Silva","R Correa da Silva",
+      "RC da Silva","Lua F. T. Airoldi","Victor Hugo M. Ramos","Victor Hugo Marques Ramos",
+      "Cleverson Andrade Goulart", "Mauricio Porto Pato", "Diego Rodrigues Cavalcante", "Pedro Dedin Neto",
+      "Mateus França Giordano", "Victor Roberto Soares da Silva", "Gabriel Moniz Arantes",
+    "Lucas Barbosa Ribeiro dos Santos", "Luis Felipe Santos da Silva", "Antônio Bruno de Carvalho Morales",
+      "João Carlos Nascimento Soares", "Rodrigo Mendes Ribeiro", "Jonatan de Oliveira Sola", 
+      "Vinícius Silva Franção", "Carla Ribeiro Rodrigues da Rocha", "Marcos Cezar Rios Ribeiro Junior",
+      "Rafael Grossi e Fonseca", "Arthur Xavier Belluci Oliveira de Souza", "Lucas James Faga", "Lucas Haiashi Lima",
+      "Romário Melquíades Resende", "Lincoln da Silva Pereira", "Marvin Mascioli Janini", 
+      "Matheus Balisa Pauliquevis", "Genivaldo Vasconcelos Pinheiro Filho", "Fernanda Lima Matos", 
+      "Julian Fernando Cortez Ibañez", "Vicente Viater Figueira", "Gabriel Alves de Lima Guimarães",
+      "Genilson Alves Cardoso da Silva", "Matheus Silva Colmenero de Oliveira", "Sérgio Martins Filho", 
+      "Gabriel Giulianno de Camargo Pimentel", "Gabriela Fernanda Bundza", "Sasa Plácido Salmen Hussain",
+      "Leonardo Pipolo de Gioia", "Agata Grechko", "Felipe Dilho Alves", "Luiz Cláudio de Oliveira Gomes Júnior"  
+      "Ana Camila Costa Esteves", "Nathan Bastos Xavier", "João Paulo Picchetti", "Luiza Fernanda Perin", 
+      "Thiago Siqueira Domingues", "Daniel López Cano", "Joaquín Andrés Armijo Torres"
 ];
 
 const resultsDiv = document.getElementById("results");
@@ -93,5 +106,6 @@ async function carregarResultados() {
     resultsDiv.innerHTML = "Erro ao carregar os dados: " + (error.message || "Failed to fetch");
   }
 }
+
 
 carregarResultados();
