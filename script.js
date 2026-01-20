@@ -2,11 +2,11 @@
 const WORKER_URL = "https://spring-glade-d911.fismat.workers.dev";
 
 const nomesDestacados = [
- "Gustavo Burdman","Renata Zukanovich Funchal","Oscar Eboli","O. J. P. Eboli",
+     "Gustavo Burdman","Renata Zukanovich Funchal","Oscar Eboli","O. J. P. Eboli",
       "Matheus Martines","Luighi P. S. Leal","L.P. Santos Leal",
       "L. P. Santos Leal","L. P. S. Leal","Ana Luisa Foguel",
-     "Oscar J. P. Éboli","Lucas Magno D. Ramos","Bruno Hiroki Muto",
-      "Gustavo S.S. Sakoda","G.S.S. Sakoda", "Bruno Siqueira Eduardo",
+      "Oscar J. P. Éboli","Lucas Magno D. Ramos",
+      "Gustavo S.S. Sakoda","G.S.S. Sakoda",
       "Rafiqul Rahaman","Barbara Amaral","Eduardo Casali","Frederique Grassi",
       "J.C.A. Barata","João C. A. Barata","Joao C. A. Barata","L.R.W.Abramo",
       "L. Raul Abramo","R. Abramo","Raul Abramo",
@@ -16,20 +16,7 @@ const nomesDestacados = [
       "L. R. Abramo","O. J. P. Éboli","Bárbara Amaral","R. Zukanovich Funchal",
       "Gabriel Santos Menezes","Ricardo Correa da Silva","R Correa da Silva",
       "RC da Silva","Lua F. T. Airoldi","Victor Hugo M. Ramos","Victor Hugo Marques Ramos",
-      "Cleverson Andrade Goulart", "Mauricio Porto Pato", "Diego Rodrigues Cavalcante", "Pedro Dedin Neto",
-      "Mateus França Giordano", "Victor Roberto Soares da Silva", "Gabriel Moniz Arantes",
-    "Lucas Barbosa Ribeiro dos Santos", "Luis Felipe Santos da Silva", "Antônio Bruno de Carvalho Morales",
-      "João Carlos Nascimento Soares", "Rodrigo Mendes Ribeiro", "Jonatan de Oliveira Sola", 
-      "Vinícius Silva Franção", "Carla Ribeiro Rodrigues da Rocha", "Marcos Cezar Rios Ribeiro Junior",
-      "Rafael Grossi e Fonseca", "Arthur Xavier Belluci Oliveira de Souza", "Lucas James Faga", "Lucas Haiashi Lima",
-      "Romário Melquíades Resende", "Lincoln da Silva Pereira", "Marvin Mascioli Janini", 
-      "Matheus Balisa Pauliquevis", "Genivaldo Vasconcelos Pinheiro Filho", "Fernanda Lima Matos", 
-      "Julian Fernando Cortez Ibañez", "Vicente Viater Figueira", "Gabriel Alves de Lima Guimarães",
-      "Genilson Alves Cardoso da Silva", "Matheus Silva Colmenero de Oliveira", "Sérgio Martins Filho", 
-      "Gabriel Giulianno de Camargo Pimentel", "Gabriela Fernanda Bundza", "Sasa Plácido Salmen Hussain",
-      "Leonardo Pipolo de Gioia", "Agata Grechko", "Felipe Dilho Alves", "Luiz Cláudio de Oliveira Gomes Júnior"  
-      "Ana Camila Costa Esteves", "Nathan Bastos Xavier", "João Paulo Picchetti", "Luiza Fernanda Perin", 
-      "Thiago Siqueira Domingues", "Daniel López Cano", "Joaquín Andrés Armijo Torres"
+      "Cleverson Andrade Goulart","Mauricio Porto Pato"
 ];
 
 const resultsDiv = document.getElementById("results");
@@ -109,3 +96,4 @@ async function carregarResultados() {
 
 
 carregarResultados();
+
