@@ -14,7 +14,7 @@ const nomesDestacados = [
       "Álvaro S. de Jesus","Á.S. de Jesus",
       "Alisson Tezzin","Ian Tashiro","Kevin Pala","Pedro Ishida",
       "L. R. Abramo","O. J. P. Éboli","Bárbara Amaral","R. Zukanovich Funchal",
-      "Gabriel Santos Menezes","Ricardo Correa da Silva","R Correa da Silva",
+      "Gabriel Santos Menezes","Gabriel Menezes","Ricardo Correa da Silva","R Correa da Silva",
       "RC da Silva","Lua F. T. Airoldi","Victor Hugo M. Ramos","Victor Hugo Marques Ramos",
       "Cleverson Andrade Goulart","Mauricio Porto Pato"
 ];
@@ -96,4 +96,5 @@ async function carregarResultados() {
 
 
 carregarResultados();
+
 
