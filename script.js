@@ -9,7 +9,7 @@ const nomesDestacados = [
       "Gustavo S.S. Sakoda","G.S.S. Sakoda",
       "Rafiqul Rahaman","Barbara Amaral","Eduardo Casali","Frederique Grassi",
       "J.C.A. Barata","João C. A. Barata","Joao C. A. Barata","L.R.W.Abramo",
-      "L. Raul Abramo","R. Abramo","Raul Abramo",
+      "L. Raul Abramo","R. Abramo","Raul Abramo","Daniel Lopez-Cano",
       "Marcos Lima","Matthew Luzum","Luis Raul Abramo","João Vitor Dinarte Ferri",
       "Álvaro S. de Jesus","Á.S. de Jesus",
       "Alisson Tezzin","Ian Tashiro","Kevin Pala","Pedro Ishida",
@@ -96,6 +96,7 @@ async function carregarResultados() {
 
 
 carregarResultados();
+
 
 
 
