@@ -12,7 +12,7 @@ const nomesDestacados = [
       "L. Raul Abramo","R. Abramo","Raul Abramo","Daniel Lopez-Cano",
       "Marcos Lima","Matthew Luzum","Luis Raul Abramo","João Vitor Dinarte Ferri",
       "Álvaro S. de Jesus","Á.S. de Jesus", "Oscar J. P. Eboli","Pedro Dedin Neto",
-      "Alisson Tezzin","Ian Tashiro","Kevin Pala","Pedro Ishida", "Felipe D. Alves",
+      "Ian Tashiro","Kevin Pala","Pedro Ishida", "Felipe D. Alves",
       "L. R. Abramo","O. J. P. Éboli","Bárbara Amaral","R. Zukanovich Funchal",
       "Gabriel Santos Menezes","Gabriel Menezes","Ricardo Correa da Silva","R Correa da Silva",
       "RC da Silva","Lua F. T. Airoldi","Victor Hugo M. Ramos","Victor Hugo Marques Ramos",
