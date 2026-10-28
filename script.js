@@ -17,7 +17,7 @@ const nomesDestacados = [
       "Gabriel Santos Menezes","Gabriel Menezes","Ricardo Correa da Silva","R Correa da Silva",
       "RC da Silva","Lua F. T. Airoldi","Victor Hugo M. Ramos","Victor Hugo Marques Ramos",
       "Cleverson Andrade Goulart","Mauricio Porto Pato","J. Frenkel", "Andre Lessa", "M. Martines",
-      "Bruno Siqueira Eduardo", "Felipe Dilho Alves", "João Carlos Alves Barata", "Lincoln da S. Pereira"
+      "Bruno Siqueira Eduardo", "Felipe Dilho Alves", "João Carlos Alves Barata", "Lincoln da S. Pereira", "Victor R. Soares da Silva"
 ];
 
 const resultsDiv = document.getElementById("results");
